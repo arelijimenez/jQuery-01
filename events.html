@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Events - jQuery</title>
+
+	<script src="scripts/jquery-3.6.0.slim.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			console.log("Document is ready");
+		});
+	</script>
+	<script>
+	// 16. Create a button on a web page. Use the .click() method to display an alert message to the user  
+	// indicating that the button has been clicked when the button is actually clicked. 
+		// $(function() {
+		// 	$('button').click(function () {
+		// 		window.alert("Button has been clicked!");
+		// 	});
+		// });
+	
+
+	//17. Create a button on a web page. Attach the click event using the .bind() method to display an 
+	//alert message to the user indicating that the button has been clicked when the button is actually 
+	//clicked.
+		// $(function() {
+		// 	$('button').bind("click", function() {
+		// 		window.alert("Button has been clicked!");
+		// 	});
+		// });
+
+	//18. Create a button on a web page. Attach the click event using the .on() method to display an alert 
+	// message to the user indicating that the button has been clicked when the button is actually
+	// clicked.
+		// $(function() {
+		// 	$('button').on("click", function() {
+		// 		window.alert("Button has been clicked!");
+		// 	});
+		// });
+
+	//19. Create two buttons on a web page. Attach the click event to both buttons using a single handler
+	//using the .on() method. Again, an alert message should be displayed to the user indicating that a
+	//button has been clicked when either of the buttons are actually clicked.
+		// $(function() {
+		// 	$('body').on({ 
+		// 		click: function() {
+		// 			window.alert("Button has been clicked!");
+		// 		}
+		// 	}, 'button');
+		// });
+
+
+	//20- Create a div on a web page. Use jQuery to set the div element to 400px wide and 400px high. 
+	//Attach the click, mouseenter, and mouseleave events using the .on() method. Display an alert 
+	//message to the user indicating that the div was either clicked on, the mouse entered it, or the
+	//mouse left it. 
+		// $(function() {
+		// 	$('div').on({
+		// 		mouseenter: function() {
+		// 			$('div').html('Cursor entered the div!');
+		// 		},
+		// 		mouseleave: function() {
+		// 			$('div').html('Cursor left the div!');
+		// 		},
+		// 		click: function() {
+		// 			$('div').html('Cursor clicked the div!');
+		// 		}
+		// 	});
+		// });
+	
+	//21- Rewrite the code from number 5. This time add a span tag to the web page. Display three 
+	//different messages within the span tag when the user enters the div, leaves the div, or clicks on
+	//the div.
+		// $(function() {
+		// 	$('body').append('<span></span>');
+		// 	$('div').on({
+		// 		mouseenter: function() {
+		// 			$('span').html('Cursor entered the div!');
+		// 		},
+		// 		mouseleave: function() {
+		// 			$('span').html('Cursor left the div!');
+		// 		},
+		// 		click: function() {
+		// 			$('span').html('Cursor clicked the div!');
+		// 		}
+		// 	});
+		// });
+
+	//22- Create a link within the web page and set it’s href attribute to browse to modulemedia.com. 
+	//When the user clicks the link, first, prevent it from redirecting to that web site. Second, 
+	//programmatically style the link so that its color changes to red. Third, display the name of the 
+	//node that triggered the event within an alert box.
+	// $(document).ready(function(){
+	// 	console.log("Ready");
+	// 	$("a").on("click", function(event) {
+	// 		event.preventDefault();
+	// 		$('a').css('color', 'red');
+	// 		alert("You have clicked: " + event.target.nodeName);
+			
+	// 	});
+	// });
+
+
+	//23- Create a div tag within the web page. As the user resizes the browser, display the width and 
+	//height of the browser window within the div tag.
+	// $(window ).resize(function() {
+	// 	$('body').html("<div>" + $(window).width() + " " + $(window).height() + "</div>");
+	// });
+		
+//******************
+	//24- Create a text field using the <input> tag. When the input has focus, set the background to a ligh
+	//gray color. When the input does not have focus, reset the background back to a white color.
+	// $(document).ready(function(){
+	// 	$( "input" ).focus(function() {
+	// 		$('input').css('background-color','lightgray');
+	// 	});
+	
+	// 	$( "input" ).blur(function() {
+	// 		$('input').css('background-color','white');
+	// 	});
+	// });
+
+	//25- Add a form tag within a web page complete with 2 input fields: one that collects name and a 
+	//second that collects an email. Add a submit button. When the user submits the form, if any one 
+	//of the two fields is left empty, display an alert box to the user indicating that the fields are 
+	//required. Give the field that the user left empty a red border. If both fields have values in them, 
+	//set their borders to green.
+	$(document).ready(function(){
+
+		$("form").submit(function(event) {
+			event.preventDefault();
+
+			if ($("input").first().val() !== "" && $("#email").val() !== "" ) {
+				$('input').css('border-color','green');
+				$("span").text( "Submitted !" ).show();
+				return;
+			} else if ($("input").first().val() !== "" && $("#email").val() === "" ) {
+				$('#name').css('border-color','green');
+				$('#email').css('border-color','red');
+				
+			} else if ($("input").first().val() === "" && $("#email").val() !== "" ) {
+				$('#name').css('border-color','red');
+				$('#email').css('border-color','green');
+			} else {
+				$("span").text( "The fields are required !").show();
+				$('input').css('border-color','red');
+			}
+		});
+	});
+
+	</script> 
+
+</head>
+
+<body>
+<!--
+	 <button id="myButton1">Click Me</button>
+	<button id="myButton2">Click Me Too</button> 
+	<a href="https://www.multimedia.com/">Browse to Multimedia</a>
+	
+	<div style="width:400px;height:400px;background-color: antiquewhite;">This is my div tag</div>
+	<div>
+	<h2> Browser's Size</h2>
+	<input></input>
+
+</div>
+-->
+<span></span>
+<form action="" id="addForm">
+	
+	<label for="name">Full Name</label><br>
+	<input type="text" id="name" class="form-control"><br>
+
+	<label for="email">Email</label><br>
+	<input type="email" id="email" class="form-control"><br>
+
+	<input type="submit" class="btn btn-dark" value="SUBMIT">
+</form>
+
+</body>
+</html>
